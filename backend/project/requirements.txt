@@ -1,0 +1,10 @@
+gunicorn
+Django>=4.2
+djangorestframework>=3.14
+djangorestframework-simplejwt>=5.0
+django-cors-headers>=3.1
+Pillow>=9.4
+python-dotenv==1.0.1
+Whitenoise
+drf-yasg
+django-rest-swagger

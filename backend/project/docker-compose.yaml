@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    # Для разработки, для продакшена лучше убрать
+    volumes:
+      - ./build:/usr/share/nginx/html
