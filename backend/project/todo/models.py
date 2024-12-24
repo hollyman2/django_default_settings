@@ -1,6 +1,8 @@
 from django.db import models
-
+from users.models import Account
 class ToDoItem(models.Model):
+
+    author = models.ForeignKey(Account, on_delete=models.CASCADE, default='')
     title = models.CharField(max_length=50)
     text = models.CharField(max_length=500)
     completed = models.BooleanField(default=False)
