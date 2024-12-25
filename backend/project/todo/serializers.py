@@ -6,17 +6,17 @@ class ToDoSerializer(serializers.ModelSerializer):
         model = ToDoItem
         fields = '__all__'
     
-    def create(self, user, validated_data):
+    def create(self, validated_data):
         item= ToDoItem.objects.create(
-            author=user,
+            author=validated_data.get('user'),
             title=validated_data.get('title'),
             text=validated_data.get('text'),
             completed= validated_data.get('completed'),
             priority=validated_data.get('priority')
         )
-        return ToDoSerializer(item)
+        return item
     
-    def edit(self, validated_data, item):
+    def edit(self, validated_data):
         
         if validated_data.get('title'):
             item.title = validated_data.get('title')
@@ -28,5 +28,5 @@ class ToDoSerializer(serializers.ModelSerializer):
             item.title = validated_data.get('priority')
 
         item.save()
-        return ToDoSerializer(item)
+        return item
         
