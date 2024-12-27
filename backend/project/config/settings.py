@@ -87,12 +87,12 @@ CORS_ALLOWED_ORIGINS = [
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
@@ -142,6 +142,17 @@ REST_FRAMEWORK = {
             'rest_framework_simplejwt.authentication.JWTAuthentication',
         )
     }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tg_bot', # Замените на имя вашей базы данных
+        'USER': 'postgres', # Замените на имя пользователя базы данных
+        'PASSWORD': 'Holly_2000', # Замените на пароль пользователя базы данных
+        'HOST': '127.0.0.1', # Замените на хост базы данных (обычно '127.0.0.1' или 'localhost')
+        'PORT': '5432', # Замените на порт базы данных (обычно '5432')
+    }
+}
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=14),

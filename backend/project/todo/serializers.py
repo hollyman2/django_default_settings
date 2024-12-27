@@ -7,26 +7,25 @@ class ToDoSerializer(serializers.ModelSerializer):
         fields = '__all__'
     
     def create(self, validated_data):
-        item= ToDoItem.objects.create(
-            author=validated_data.get('user'),
+        # Здесь важно получить user из контекста запроса, а не из validated_data
+        user = self.context['request'].user
+        if user is None or user.is_anonymous:
+            raise serializers.ValidationError("User is not authenticated") # Или другая подходящая обработка
+        item = ToDoItem.objects.create(
+            author=user, # Используем user из контекста запроса
             title=validated_data.get('title'),
             text=validated_data.get('text'),
-            completed= validated_data.get('completed'),
+            completed=validated_data.get('completed'),
             priority=validated_data.get('priority')
         )
         return item
     
-    def edit(self, validated_data):
+    def update(self, instance, validated_data): # Переименован метод на update
+        instance.title = validated_data.get('title', instance.title) # Используем get с default значением
+        instance.text = validated_data.get('text', instance.text)
+        instance.completed = validated_data.get('completed', instance.completed)
+        instance.priority = validated_data.get('priority', instance.priority)
+        instance.save()
         
-        if validated_data.get('title'):
-            item.title = validated_data.get('title')
-        if validated_data.get('text'):
-            item.title = validated_data.get('text')
-        if validated_data.get('completed'):
-            item.title = validated_data.get('completed')
-        if validated_data.get('priority'):
-            item.title = validated_data.get('priority')
-
-        item.save()
-        return item
+        return instance
         
