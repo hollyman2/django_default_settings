@@ -143,14 +143,21 @@ REST_FRAMEWORK = {
         )
     }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql', # Указывает движок базы данных PostgreSQL
+#         'NAME': 'tg_bot',                          # Имя базы данных
+#         'USER': 'postgres',                         # Пользователь базы данных
+#         'PASSWORD': 'Holly_2000',                   # Пароль пользователя
+#         'HOST': 'db',                              # Хост базы данных (важно: это имя сервиса из docker-compose)
+#         'PORT': '5432',                            # Порт базы данных
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tg_bot', # Замените на имя вашей базы данных
-        'USER': 'postgres', # Замените на имя пользователя базы данных
-        'PASSWORD': 'Holly_2000', # Замените на пароль пользователя базы данных
-        'HOST': '127.0.0.1', # Замените на хост базы данных (обычно '127.0.0.1' или 'localhost')
-        'PORT': '5432', # Замените на порт базы данных (обычно '5432')
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

@@ -8,3 +8,4 @@ python-dotenv==1.0.1
 Whitenoise
 drf-yasg
 django-rest-swagger
+psycopg2-binary
