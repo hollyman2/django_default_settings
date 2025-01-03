@@ -161,6 +161,12 @@ DATABASES = {
     }
 }
 
+STATIC_URL = '/static/'
+ 
+STATICFILES_DIRS = [
+    BASE_DIR / 'static', # Или любой другой путь к вашей директории 'static' в проекте
+]
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=14),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
