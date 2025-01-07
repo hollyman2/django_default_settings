@@ -135,8 +135,7 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TIMEZONE = 'UTC' # Или ваша временная зона
-CELERY_TASK_TRACK_STARTED = False # Отключает трассировку начала выполнения задачи
-CELERY_TASK_ALWAYS_EAGER = True 
+
    
 # CELERY_RESULT_BACKEND = 'db+sqlite:///results.db'
 # CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
