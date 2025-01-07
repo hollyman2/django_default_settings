@@ -14,12 +14,14 @@ class SignupSerializer(ModelSerializer):
         fields = [
             'name',
             'password',
-            'tg_id'
+            'tg_id',
+            'email'
         ]
 
     def create(self, validated_data):
         
         account = Account.objects.create_user(
+            email=validated_data.get('email'),
             tg_id=validated_data.get('tg_id'),
             password=validated_data.get('password'),
             name=validated_data.get('name'),
@@ -30,6 +32,7 @@ class SignupSerializer(ModelSerializer):
 
 class LoginSerializer(serializers.Serializer):
     name = serializers.CharField()
+    email = serializers.EmailField()
     tg_id = serializers.CharField()
     password = serializers.CharField(min_length=8, max_length=128)
 

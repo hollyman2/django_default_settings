@@ -9,15 +9,15 @@ class Account(AbstractBaseUser, PermissionsMixin):
     name= models.CharField(_("name"), max_length=254)
     password = models.CharField(_("password"), max_length=100)
     tg_id = models.CharField(_("tg_id"),unique=True, max_length=100)
-
+    email = models.EmailField(_("email"), unique=True, max_length=254)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
 
     objects = CustomUserManager()
 
-    EMAIL_FIELD = "tg_id"
-    USERNAME_FIELD = "tg_id"
-    REQUIRED_FIELDS = ["password"]
+    EMAIL_FIELD = "email"
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["tg_id", "password"]
 
     class Meta:
         verbose_name = _("user")

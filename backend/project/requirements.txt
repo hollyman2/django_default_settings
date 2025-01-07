@@ -9,3 +9,8 @@ Whitenoise
 drf-yasg
 django-rest-swagger
 psycopg2-binary
+celery
+redis 
+django-celery-beat
+django-celery-results 
+kombu

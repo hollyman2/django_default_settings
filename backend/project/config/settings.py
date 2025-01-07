@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,12 +43,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_yasg',
+    # 'kombu.transport.django',
 
     'todo',
     'users',
 
 ]
-
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -87,12 +88,12 @@ CORS_ALLOWED_ORIGINS = [
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation
@@ -127,10 +128,39 @@ USE_TZ = True
 
 AUTH_USER_MODEL = 'users.Account'
 
+# CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//' # Или ваш URL RabbitMQ
+
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TIMEZONE = 'UTC' # Или ваша временная зона
+CELERY_TASK_TRACK_STARTED = False # Отключает трассировку начала выполнения задачи
+CELERY_TASK_ALWAYS_EAGER = True 
+   
+# CELERY_RESULT_BACKEND = 'db+sqlite:///results.db'
+# CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TIMEZONE = 'UTC'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'myyardverify@gmail.com'
+EMAIL_HOST_PASSWORD = 'jrfg gysj kxqa kven'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = '/app/staticfiles' 
+
+ # или 'project/static' если project - ваша главная директория
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -154,18 +184,9 @@ REST_FRAMEWORK = {
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
-STATIC_URL = '/static/'
+
  
-STATICFILES_DIRS = [
-    BASE_DIR / 'static', # Или любой другой путь к вашей директории 'static' в проекте
-]
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=14),
