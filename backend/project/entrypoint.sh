@@ -12,8 +12,6 @@ python3 manage.py collectstatic --noinput || (echo "Ошибка collectstatic" 
 # Запуск сервера Django в фоне
 gunicorn --bind 0.0.0.0:8000 config.wsgi:application &
 
-celery -A config.celery beat -l info &
-
 wait
 
 

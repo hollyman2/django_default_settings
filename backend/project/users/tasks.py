@@ -2,7 +2,7 @@ import logging
 from celery import shared_task
 from django.core.mail import send_mail
 
-@shared_task(name='users.tasks.send_mail_task')
+# @shared_task(name='users.tasks.send_mail_task')
 def send_mail_task(subject, message, from_email, recipient_list):
     print(f"Отправка письма: Тема: {subject}, Сообщение: {message}, От: {from_email}, Получатели: {recipient_list}")
     try:

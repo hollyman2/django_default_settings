@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-3%^2^q0qlr#!h+te)&&5)r#_0f80mj2kl*rpl!df!qmau9ybs#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
 
 
 # Application definition
@@ -83,18 +83,29 @@ WSGI_APPLICATION = 'config.wsgi.application'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", # Для разработки
     "http://127.0.0.1:8000", # Для продакшена. Замените на ваш реальный домен и порт!
+    # '0.0.0.0'
 ]
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql', # Указывает движок базы данных PostgreSQL
+        'NAME': 'todoapp',                          # Имя базы данных
+        'USER': 'postgres',                         # Пользователь базы данных
+        'PASSWORD': 'Holly_2000',                   # Пароль пользователя
+        'HOST': 'db',                              # Хост базы данных (важно: это имя сервиса из docker-compose)
+        'PORT': '5432',                            # Порт базы данных
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -171,19 +182,6 @@ REST_FRAMEWORK = {
             'rest_framework_simplejwt.authentication.JWTAuthentication',
         )
     }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql', # Указывает движок базы данных PostgreSQL
-#         'NAME': 'tg_bot',                          # Имя базы данных
-#         'USER': 'postgres',                         # Пользователь базы данных
-#         'PASSWORD': 'Holly_2000',                   # Пароль пользователя
-#         'HOST': 'db',                              # Хост базы данных (важно: это имя сервиса из docker-compose)
-#         'PORT': '5432',                            # Порт базы данных
-#     }
-# }
-
-
 
  
 

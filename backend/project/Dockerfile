@@ -17,7 +17,7 @@ RUN chmod +x /app/entrypoint.sh
 USER appuser
 
 ENV DJANGO_SETTINGS_MODULE=config.settings
-ENV DATABASE_URL=sqlite:///db.sqlite3
+ENV DATABASE_URL=postgres://postgres:Holly_2000@db:5432/todoapp
 
 ENTRYPOINT ["/app/entrypoint.sh"]
 

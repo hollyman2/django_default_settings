@@ -37,7 +37,7 @@ class SignUpAPIView(APIView):
         from_email = 'myyardverify@gmail.com'
         recipient_list = [user.email]
 
-        send_mail_task.delay(subject, message, from_email, recipient_list)
+        send_mail_task(subject, message, from_email, recipient_list)
 
         return Response(
             {
@@ -125,7 +125,7 @@ class LoginAPIView(APIView):
             from_email = 'myyardverify@gmail.com'
             recipient_list = [user.email]
 
-            send_mail_task.delay(subject, message, from_email, recipient_list)
+            send_mail_task(subject, message, from_email, recipient_list)
 
             return Response(
                 {'message': 'На почту было отправлена инструкция по активации аккаунта'},
