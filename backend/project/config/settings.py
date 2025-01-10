@@ -140,13 +140,12 @@ USE_TZ = True
 AUTH_USER_MODEL = 'users.Account'
 
 # CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
-CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//' # Или ваш URL RabbitMQ
-
+CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0') # Используйте переменную окружения для гибкости
+CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL', 'redis://localhost:6379/0') # Используйте тот же Redis для бекенда результатов
+CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TIMEZONE = 'UTC' # Или ваша временная зона
-
+CELERY_TIMEZONE = 'UTC' # Или ваш часовой пояс
    
 # CELERY_RESULT_BACKEND = 'db+sqlite:///results.db'
 # CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
