@@ -1,0 +1,8 @@
+[2025-01-10 19:54:46 +0000] [12] [INFO] Starting gunicorn 23.0.0
+[2025-01-10 19:54:46 +0000] [12] [INFO] Listening at: http://0.0.0.0:8000 (12)
+[2025-01-10 19:54:46 +0000] [12] [INFO] Using worker: sync
+[2025-01-10 19:54:46 +0000] [13] [INFO] Booting worker with pid: 13
+[2025-01-11 12:22:29 +0000] [9] [INFO] Starting gunicorn 23.0.0
+[2025-01-11 12:22:29 +0000] [9] [INFO] Listening at: http://0.0.0.0:8000 (9)
+[2025-01-11 12:22:29 +0000] [9] [INFO] Using worker: sync
+[2025-01-11 12:22:29 +0000] [10] [INFO] Booting worker with pid: 10
